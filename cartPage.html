@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+         #root {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #addedUsers {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            margin: 1rem;
+            border: 1px solid gray;
+            width: 203px;
+        }
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">
+                <h3>Cart Page</h3>
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="addedUsers"></div>
+    <script src="cart.js"></script>
+</body>
+</html>
