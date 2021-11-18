@@ -1,36 +1,49 @@
 //cart page
-const addedUsers = document.getElementById('addedUsers');
-const removeButton = document.getElementsByClassName('remove');
-console.log(removeButton);
+let div = document.getElementById('addedUsers');
+var users = localStorage.getItem('names');
+var images = localStorage.getItem('images');
 
-function getUsersList(){
-    var users = [localStorage.getItem('users')];
-    // console.log(users);
-    var coupledUsers = users.match(/([0-9]+ [A-z]+, [0-9]+)/g);
-      console.log(coupledUsers);
-    var arrayLength = users.length;
 
-    for(i=0;i<arrayLength;i++){
-     var usersList = users[i];
-      var splittedUsers = usersList.split(',');
-       var names = splittedUsers.filter(function(val,idx) {
-          if(idx%2==0)
-            return val;
-        })
-       var userImages = splittedUsers.filter(function(val,idx) {
-          if(!(idx%2==0))
-            return val;
-    }) 
-        for(i=0;i<names.length&&userImages;i++){
-            document.getElementById('addedUsers').insertAdjacentHTML('afterbegin', `<div class="card"><img src="${userImages[i]}"> <h5 class="login">${names[i]}</h5><button class="remove" type='submit'>Remove button</button></div>`)
-      
-      }
-
-      
-      
+let diffUsers = users.split(',')
+let diffImages = images.split(',');
+function displayUsers(){
+    if(users && images){
+ 
+    for(i=0;i<diffUsers.length && diffImages.length; i++){
+        console.log(diffUsers[i] + " " + diffImages[i]);
+        div.insertAdjacentHTML('afterbegin', `<div class="card"><img src="${diffImages[i]}"> <h5 class="login">${diffUsers[i]}</h5><button class="remove" type='submit'>Remove button</button></div>`);
+        
+    }
+    
+}
+else{
+    div.insertAdjacentHTML('afterbegin', `<button class="listingPage">Back to the list Page</button>`);
+    document.querySelector('.listingPage').addEventListener('click',()=>{
+        location.href = "index.html";
+    })
 }
 }
-getUsersList();
-console.log(removeButton.length);
 
 
+displayUsers();
+function remove(){
+
+
+    
+    let removeAll=document.querySelectorAll('.remove');
+ 
+    removeAll.forEach((e,i)=>{
+        e.addEventListener('click',()=>{
+            console.log('clicked');
+          let imgSRC= e.parentElement.firstElementChild.getAttribute('src');
+            console.log(imgSRC);
+            diffUsers.splice(diffImages.indexOf(imgSRC),1);
+            diffImages.splice(diffImages.indexOf(imgSRC),1);
+            localStorage.setItem("names",diffUsers);
+            localStorage.setItem("images", diffImages);
+            location.reload();
+        });
+
+    })
+}
+remove();
